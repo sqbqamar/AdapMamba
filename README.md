@@ -18,44 +18,6 @@ AdapMamba-UNet addresses three persistent weaknesses of current Mamba-based U-Ne
 | Single-scale terminal decoder prediction misses small organs | **APFA** — multi-dilation pyramid aggregation with learnable α weights |
 | Patch-expanding upsampling blurs fine boundaries | **PAU** — CARAFE content-aware reassembly + position-sensitive attention |
 
----
-
-## Architecture
-
-```
-Input  (H × W × 3)
-  │
-  ▼
-Patch Embed  [4×4 patches → C channels]
-  │
-  ├──► Enc-1  VSS Block ×2      H/4  × W/4  × C  ──────────────────────► skip F_e1
-  │       └─ Patch Merge ↓2×                                               │
-  ├──► Enc-2  VSS Block ×2      H/8  × W/8  × 2C ─────────────────► skip F_e2
-  │       └─ Patch Merge ↓2×                                         │
-  ├──► Enc-3  VSS Block ×3      H/16 × W/16 × 4C ────────────► skip F_e3
-  │       └─ Patch Merge ↓2×                                   │
-  └──► Bottleneck  VSS Block ×2  H/32 × W/32 × 8C              │
-                        │                                        │
-            PAU ↑2×     │  ◄── F_e3 ─────────────────────────────┘
-            HCAG        │
-            VSS Block   ├──► F_d3   H/16 × W/16 × 4C
-                        │
-            PAU ↑2×     │  ◄── F_e2 ───────────────────────────────────┘
-            HCAG        │
-            VSS Block   ├──► F_d2   H/8  × W/8  × 2C
-                        │
-            PAU ↑2×     │  ◄── F_e1 ────────────────────────────────────────┘
-            HCAG        │
-            VSS Block   ├──► F_d1   H/4  × W/4  × C
-                        │
-             APFA  [F_d1 ⊕ F_d2↑ ⊕ F_d3↑ ⊕ F_bn↑]  d={1,2,4}, learnable α
-                        │
-             Final PAU ↑4×
-                        │
-             Conv 1×1 head
-                        │
-Output  (H × W × N_classes)
-```
 
 
 
@@ -191,11 +153,7 @@ The Vision State Space Block (from VMamba) is the core feature extractor.
 `SS2D` scans the feature map as four 1-D sequences (↗ ↘ ↙ ↖) and merges
 the outputs, giving every pixel access to global context at **O(N)** cost.
 
-```
-x  →  LayerNorm  →  SS2D ─⊗─  out
-                 →  Gate  ─┘
-   └─────────────── residual +
-```
+
 
 ### PAU — Progressive Adaptive Upsampling
 
@@ -213,15 +171,6 @@ Replaces patch-expanding layers.
 
 Filters noisy encoder skip features before they enter the decoder.
 
-```
-X_up ┐                          ┌── Channel branch: GAP→FC–GELU–FC→Sig → e_c
-     ├─ cat(X_up, X_skip) ──────┤
-X_skip ┘                        └── Spatial branch: DilConv(d=2)→Conv1×1→Sig → A_sp
-
-Gate  G  = e_c ⊗ A_sp
-X′_skip  = X_skip ⊗ G
-X_fused  = LN( Linear([X_up ; X′_skip]) )
-```
 
 ### APFA — Adaptive Pyramid Feature Aggregation
 
@@ -243,10 +192,9 @@ If you find this work useful, please cite:
 
 ```bibtex
 @article{adapmamba2025,
-  title   = {Adaptive Multi-Scale Feature Aggregation and
-             Hierarchical Gated Fusion for Mamba-Based Medical Image Segmentation},
-  author  = {Saqib et al.},
-  journal = {},
+  title   = {Adaptive Multi-Scale Feature Aggregation and Hierarchical Gated Fusion for Mamba-Based Medical Image Segmentation},
+  author  = {Saqib Qamar},
+  journal = {JBHI},
   year    = {2026}
 }
 ```
