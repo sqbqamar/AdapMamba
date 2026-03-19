@@ -14,9 +14,9 @@ AdapMamba-UNet addresses three persistent weaknesses of current Mamba-based U-Ne
 
 | Problem in existing methods | Our solution |
 |---|---|
-| Static skip connections pass noisy encoder features unchanged | **HCAG** — dual-branch channel + spatial gating |
-| Single-scale terminal decoder prediction misses small organs | **APFA** — multi-dilation pyramid aggregation with learnable α weights |
-| Patch-expanding upsampling blurs fine boundaries | **PAU** — CARAFE content-aware reassembly + position-sensitive attention |
+| Static skip connections pass noisy encoder features unchanged | **HCAG** -> dual-branch channel + spatial gating |
+| Single-scale terminal decoder prediction misses small organs | **APFA** -> multi-dilation pyramid aggregation with learnable α weights |
+| Patch-expanding upsampling blurs fine boundaries | **PAU** -> CARAFE content-aware reassembly + position-sensitive attention |
 
 
 
