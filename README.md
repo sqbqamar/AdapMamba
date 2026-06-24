@@ -1,6 +1,6 @@
 # AdapMamba-UNet
 
-**Adaptive Multi-Scale Feature Aggregation and Hierarchical Gated Fusion for Mamba-Based Medical Image Segmentation**
+**Hierarchical Gated Mamba Network for Multi-Scale Medical Image Segmentation**
 
 [![Python](https://img.shields.io/badge/Python-3.9%2B-3776AB?logo=python&logoColor=white)](https://python.org)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.1%2B-EE4C2C?logo=pytorch&logoColor=white)](https://pytorch.org)
@@ -186,17 +186,7 @@ F_d4↑ ─┘         DW-Sep Conv d=4 ─→ × α₃ ─┘
 
 
 
-## Citation
 
-If you find this work useful, please cite:
-
-```bibtex
-@article{adapmamba2025,
-  title   = {Adaptive Multi-Scale Feature Aggregation and Hierarchical Gated Fusion for Mamba-Based Medical Image Segmentation},
-  author  = {Saqib Qamar},
-  journal = {},
-  year    = {2026}
-}
 ```
 
 ---
