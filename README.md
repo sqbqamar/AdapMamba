@@ -194,7 +194,7 @@ If you find this work useful, please cite:
 @article{adapmamba2025,
   title   = {Adaptive Multi-Scale Feature Aggregation and Hierarchical Gated Fusion for Mamba-Based Medical Image Segmentation},
   author  = {Saqib Qamar},
-  journal = {JBHI},
+  journal = {},
   year    = {2026}
 }
 ```
