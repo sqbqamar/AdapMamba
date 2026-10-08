@@ -1,0 +1,12 @@
+# Core
+torch==2.1.0
+numpy>=1.24
+scipy>=1.10
+h5py>=3.8
+nibabel>=5.0          # preprocessing of raw NIfTI data
+# GPU training: fused selective-scan kernel (install separately, needs CUDA)
+#   pip install mamba-ssm
+# Optional
+#   mmcv          fused CARAFE op (the pure-PyTorch implementation is used otherwise)
+#   statsmodels   cross-check of the Holm correction in tests
+#   medpy         cross-check of HD95/ASSD in tests

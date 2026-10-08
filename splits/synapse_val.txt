@@ -1,0 +1,6 @@
+# Synapse split. Train/test partition: the standard 18/12 split of TransUNet (Chen et al., 2021),
+# used by Swin-UNet, VM-UNet and VMKLA-UNet. The validation cases are held out of the 18
+
+case0021
+case0030
+case0037
