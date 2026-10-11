@@ -120,6 +120,6 @@ python tests/test_stats.py                          # statistics and Holm correc
 
 ## License and citation
 
-MIT License (see `LICENSE`). Please cite the paper; citation metadata is in `CITATION.cff`.
+MIT License.
 
 
